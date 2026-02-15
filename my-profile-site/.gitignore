@@ -1,0 +1,28 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDE and Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.claude/
+
+# Environment
+.env
+.env.local
+
+# Node (if ever used)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Build outputs
+dist/
+build/
+
+# System files
+Thumbs.db
