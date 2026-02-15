@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyungsu Jeon - Senior Research Scientist</title>
+    <meta name="description" content="Senior Research Scientist specializing in Antibody Engineering and ADC. Interested in AI and biotech investment.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom CSS -->
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Hero gradient background */
+        .hero-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0d9488 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 76%, transparent 77%, transparent);
+            background-size: 50px 50px;
+            pointer-events: none;
+        }
+
+        /* Header scroll effect */
+        header {
+            transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+        }
+
+        header.scrolled {
+            background-color: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Smooth animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Card hover effect */
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Mobile menu animation */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            max-height: 500px;
+        }
+
+        /* Focus styles for accessibility */
+        button:focus, a:focus {
+            outline: 2px solid #1e3a8a;
+            outline-offset: 2px;
+        }
+
+        /* Active navigation link */
+        nav a.active {
+            color: #0d9488;
+            border-bottom: 2px solid #0d9488;
+        }
+
+        /* Language switcher animation */
+        .language-switch {
+            transition: all 0.3s ease;
+        }
+
+        /* Copy email feedback */
+        .copy-feedback {
+            animation: slideUp 0.3s ease forwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section transitions */
+        section {
+            transition: background-color 0.3s ease;
+        }
+
+        /* Link hover effects */
+        a.text-link {
+            position: relative;
+            color: #0284c7;
+        }
+
+        a.text-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #0284c7;
+            transition: width 0.3s ease;
+        }
+
+        a.text-link:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-white text-slate-900">
+    <!-- Header / Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-slate-950">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo / Name -->
+                <div class="flex-shrink-0">
+                    <a href="#hero" class="text-xl font-bold text-white">Hyungsu Jeon</a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-gray-300 hover:text-teal-500 transition nav-link text-sm">소개</a>
+                    <a href="#skills" class="text-gray-300 hover:text-teal-500 transition nav-link text-sm">전문 분야</a>
+                    <a href="#projects" class="text-gray-300 hover:text-teal-500 transition nav-link text-sm">프로젝트</a>
+                    <a href="#blog" class="text-gray-300 hover:text-teal-500 transition nav-link text-sm">블로그</a>
+                    <a href="#contact" class="text-gray-300 hover:text-teal-500 transition nav-link text-sm">연락하기</a>
+                </nav>
+
+                <!-- Right side: Language switcher + Mobile menu button -->
+                <div class="flex items-center space-x-4">
+                    <!-- Language Switcher -->
+                    <button id="langSwitch" class="flex items-center space-x-1 px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-sm text-gray-300 transition language-switch" title="Toggle language">
+                        <span id="langIcon">🇰🇷</span>
+                        <span id="langText">KR</span>
+                    </button>
+
+                    <!-- Mobile menu button -->
+                    <button id="mobileMenuBtn" class="md:hidden inline-flex items-center justify-center p-2 rounded-lg hover:bg-slate-800 transition">
+                        <svg id="menuIcon" class="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <nav id="mobileMenu" class="mobile-menu md:hidden bg-slate-800 border-t border-slate-700">
+                <div class="px-4 py-4 space-y-2">
+                    <a href="#about" class="block text-gray-300 hover:text-teal-500 py-2 text-sm nav-link">소개</a>
+                    <a href="#skills" class="block text-gray-300 hover:text-teal-500 py-2 text-sm nav-link">전문 분야</a>
+                    <a href="#projects" class="block text-gray-300 hover:text-teal-500 py-2 text-sm nav-link">프로젝트</a>
+                    <a href="#blog" class="block text-gray-300 hover:text-teal-500 py-2 text-sm nav-link">블로그</a>
+                    <a href="#contact" class="block text-gray-300 hover:text-teal-500 py-2 text-sm nav-link">연락하기</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-16">
+        <!-- Hero Section -->
+        <section id="hero" class="hero-gradient text-white py-32 md:py-48 relative">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center">
+                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6">Hyungsu Jeon</h1>
+                    <p class="text-xl md:text-2xl text-gray-200 mb-8">Senior Research Scientist</p>
+                    <p class="text-lg text-gray-300 mb-12 max-w-2xl mx-auto">항체 공학 및 ADC 연구 전문가 | AI 및 투자 관심가</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="#projects" class="px-8 py-3 bg-teal-500 hover:bg-teal-600 rounded-lg font-semibold transition cta-button">프로젝트 보기</a>
+                        <a href="#contact" class="px-8 py-3 border-2 border-white text-white hover:bg-white hover:text-slate-900 rounded-lg font-semibold transition cta-button">연락하기</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 md:py-32 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl md:text-5xl font-bold mb-16 text-center">소개</h2>
+                <div class="grid md:grid-cols-2 gap-12 items-center fade-in-up">
+                    <!-- Image Placeholder -->
+                    <div class="flex justify-center">
+                        <div class="w-64 h-64 bg-gradient-to-br from-slate-200 to-slate-300 rounded-lg flex items-center justify-center">
+                            <span class="text-slate-500 text-sm">프로필 사진</span>
+                        </div>
+                    </div>
+
+                    <!-- Text Content -->
+                    <div>
+                        <p class="text-lg text-slate-700 mb-6 leading-relaxed">항체 공학 및 항체-약물 결합체(ADC) 연구를 전문으로 하는 Senior Research Scientist입니다. 또한 AI 기술과 바이오테크 투자에 깊은 관심을 가진 평범한 가장입니다.</p>
+                        <p class="text-lg text-slate-700 mb-6 leading-relaxed">과학적 엄밀성과 혁신적 사고를 바탕으로 복잡한 연구 문제를 해결하는 것을 즐기며, 새로운 기술과 시장 기회를 탐색하고 공유하는 것에 열정을 가지고 있습니다.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">생물의약</span>
+                            <span class="px-4 py-2 bg-teal-100 text-teal-800 rounded-full text-sm font-medium">항체 공학</span>
+                            <span class="px-4 py-2 bg-cyan-100 text-cyan-800 rounded-full text-sm font-medium">데이터 분석</span>
+                            <span class="px-4 py-2 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">AI/머신러닝</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 md:py-32 bg-slate-50">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl md:text-5xl font-bold mb-16 text-center">전문 분야</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Dynamically rendered skills -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 md:py-32 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl md:text-5xl font-bold mb-16 text-center">프로젝트</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Dynamically rendered projects -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog" class="py-20 md:py-32 bg-slate-50">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl md:text-5xl font-bold mb-16 text-center">블로그</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Dynamically rendered blog posts -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 md:py-32 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-center">연락하기</h2>
+                <p class="text-center text-slate-700 mb-12">의견이나 제안이 있으신가요? 편하게 연락주세요.</p>
+
+                <form id="contactForm" class="space-y-6 fade-in-up">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-slate-900 mb-2">이름</label>
+                        <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition" placeholder="Your name">
+                    </div>
+
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-slate-900 mb-2">이메일</label>
+                        <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition" placeholder="your@email.com">
+                    </div>
+
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-slate-900 mb-2">메시지</label>
+                        <textarea id="message" name="message" required rows="6" class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition resize-none" placeholder="Your message..."></textarea>
+                    </div>
+
+                    <div id="formMessage" class="hidden p-4 rounded-lg text-sm font-medium" role="alert"></div>
+
+                    <button type="submit" class="w-full px-6 py-3 bg-teal-500 text-white font-semibold rounded-lg hover:bg-teal-600 transition">메시지 보내기</button>
+                </form>
+
+                <div class="mt-12 pt-12 border-t border-slate-200 text-center">
+                    <p class="text-slate-700 mb-4">또는 직접 이메일로 연락주세요:</p>
+                    <button id="copyEmail" class="inline-flex items-center space-x-2 px-6 py-3 bg-slate-100 hover:bg-slate-200 rounded-lg transition font-medium text-slate-900">
+                        <span>hyungsu.jeon@example.com</span>
+                        <span class="text-sm">복사</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-gray-400 py-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm">© 2024 Hyungsu Jeon. 모든 권리 예약.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-teal-500 transition text-sm">LinkedIn</a>
+                    <a href="#" class="hover:text-teal-500 transition text-sm">GitHub</a>
+                    <a href="#" class="hover:text-teal-500 transition text-sm">Email</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // ============================================================
+        // SITE_CONTENT - 모든 콘텐츠는 여기서만 수정하세요!
+        // ============================================================
+        const SITE_CONTENT = {
+            // 개인 정보
+            personal: {
+                name: "Hyungsu Jeon",
+                role: { ko: "Senior Research Scientist", en: "Senior Research Scientist" },
+                tagline: {
+                    ko: "항체 공학 및 ADC 연구 전문가 | AI 및 투자 관심가",
+                    en: "Antibody Engineering & ADC Specialist | AI & Investment Enthusiast"
+                },
+                email: "jzoom0804@gmail.com",
+                year: 2026
+            },
+
+            // About 섹션
+            about: {
+                bio: [
+                    {
+                        ko: "항체 공학 및 항체-약물 결합체(ADC) 연구를 전문으로 하는 Senior Research Scientist입니다. 또한 AI 기술과 바이오테크 투자에 깊은 관심을 가진 평범한 가장입니다.",
+                        en: "Senior Research Scientist specializing in Antibody Engineering and Antibody-Drug Conjugate (ADC) research. Passionate about AI technologies and biotech investment, while being a devoted family person."
+                    },
+                    {
+                        ko: "과학적 엄밀성과 혁신적 사고를 바탕으로 복잡한 연구 문제를 해결하는 것을 즐기며, 새로운 기술과 시장 기회를 탐색하고 공유하는 것에 열정을 가지고 있습니다.",
+                        en: "I enjoy solving complex research problems with scientific rigor and innovative thinking, and I'm passionate about exploring and sharing new technologies and market opportunities."
+                    }
+                ],
+                tags: [
+                    { ko: "생물의약", en: "Biotech", color: "blue" },
+                    { ko: "항체 공학", en: "Antibody Engineering", color: "teal" },
+                    { ko: "데이터 분석", en: "Data Analysis", color: "cyan" },
+                    { ko: "AI/머신러닝", en: "AI/ML", color: "purple" }
+                ]
+            },
+
+            // Skills 섹션
+            skills: [
+                {
+                    icon: "🧬",
+                    title: { ko: "항체 공학", en: "Antibody Engineering" },
+                    description: {
+                        ko: "항체 설계, 공학, 최적화 및 생산 플랫폼 개발 경험. 차세대 치료제 개발을 위한 첨단 기술 활용.",
+                        en: "Expertise in antibody design, engineering, optimization, and production platform development. Leveraging cutting-edge technologies for next-generation therapeutics."
+                    }
+                },
+                {
+                    icon: "🎯",
+                    title: { ko: "ADC 프로젝트 리더십", en: "ADC Project Leadership" },
+                    description: {
+                        ko: "항체-약물 결합체(ADC) 프로젝트 주도 및 관리. 크로스펑셔널 팀 협업 및 차세대 ADC 개발.",
+                        en: "Leading and managing Antibody-Drug Conjugate (ADC) projects. Cross-functional collaboration and innovative solution development."
+                    }
+                },
+                {
+                    icon: "📊",
+                    title: { ko: "데이터 분석", en: "Data Analysis" },
+                    description: {
+                        ko: "고급 통계 분석, 데이터 시각화, 머신러닝 기반 인사이트 도출. 과학적 근거 기반 의사결정.",
+                        en: "Advanced statistical analysis, data visualization, and ML-driven insights. Evidence-based scientific decision-making."
+                    }
+                }
+            ],
+
+            // Projects 섹션
+            projects: [
+                {
+                    status: { ko: "진행중", en: "In Progress" },
+                    statusColor: "teal",
+                    title: { ko: "차세대 ADC 플랫폼", en: "Next-Gen ADC Platform" },
+                    description: {
+                        ko: "혁신적인 링커 기술과 페이로드 시스템을 활용한 고효능 항체-약물 결합체 개발.",
+                        en: "Development of highly potent ADCs utilizing innovative linker technology and payload systems."
+                    },
+                    tags: ["ADC", { ko: "생명공학", en: "Biotech" }]
+                },
+                {
+                    status: { ko: "완료", en: "Completed" },
+                    statusColor: "green",
+                    title: { ko: "항체 최적화 알고리즘", en: "Antibody Optimization Algorithm" },
+                    description: {
+                        ko: "머신러닝 기반의 항체 친화성 및 특이성 최적화 시스템 개발.",
+                        en: "Development of ML-based antibody affinity and specificity optimization system."
+                    },
+                    tags: ["AI/ML", "Python"]
+                },
+                {
+                    status: { ko: "진행중", en: "In Progress" },
+                    statusColor: "teal",
+                    title: { ko: "바이오마커 분석 플랫폼", en: "Biomarker Analysis Platform" },
+                    description: {
+                        ko: "대규모 임상 데이터 분석을 통한 치료 반응 예측 모델 개발.",
+                        en: "Developing predictive models for therapeutic response using large-scale clinical data analysis."
+                    },
+                    tags: [{ ko: "데이터", en: "Data" }, "R"]
+                }
+            ],
+
+            // Blog 섹션
+            blog: [
+                {
+                    date: { ko: "2024년 2월 10일", en: "Feb 10, 2024" },
+                    category: { ko: "항체 연구", en: "Antibody Research" },
+                    categoryColor: "teal",
+                    title: { ko: "항체 공학의 최신 트렌드", en: "Latest Trends in Antibody Engineering" },
+                    summary: {
+                        ko: "차세대 항체 기술의 발전과 임상 응용에 대한 심층 분석. 최신 연구 동향과 시장 기회를 탐색합니다.",
+                        en: "In-depth analysis of next-generation antibody technologies and clinical applications. Exploring the latest research trends and market opportunities."
+                    },
+                    link: "#"
+                },
+                {
+                    date: { ko: "2024년 1월 28일", en: "Jan 28, 2024" },
+                    category: { ko: "AI/ML", en: "AI/ML" },
+                    categoryColor: "purple",
+                    title: { ko: "AI를 활용한 항체 설계", en: "AI-Driven Antibody Design" },
+                    summary: {
+                        ko: "머신러닝과 딥러닝이 항체 공학에 미치는 영향 및 혁신적인 설계 방식에 관한 고찰.",
+                        en: "Impact of machine learning and deep learning on antibody engineering and innovative design approaches."
+                    },
+                    link: "#"
+                },
+                {
+                    date: { ko: "2024년 1월 15일", en: "Jan 15, 2024" },
+                    category: { ko: "투자", en: "Investment" },
+                    categoryColor: "cyan",
+                    title: { ko: "바이오테크 투자 인사이트", en: "Biotech Investment Insights" },
+                    summary: {
+                        ko: "생명공학 분야 투자 기회와 시장 분석. 기술 혁신과 경제적 가치의 교점을 짚고 넘어갑니다.",
+                        en: "Biotech investment opportunities and market analysis. Understanding the intersection of technological innovation and economic value."
+                    },
+                    link: "#"
+                }
+            ],
+
+            // Contact 섹션
+            contact: {
+                subtitle: { ko: "의견이나 제안이 있으신가요? 편하게 연락주세요.", en: "Have a question or suggestion? Feel free to reach out." }
+            },
+
+            // Footer
+            footer: {
+                copyright: { ko: "© 2024 Hyungsu Jeon. 모든 권리 예약.", en: "© 2024 Hyungsu Jeon. All rights reserved." }
+            }
+        };
+
+        // ============================================================
+        // 언어 및 렌더링 시스템
+        // ============================================================
+        const DEFAULT_LANGUAGE = 'ko';
+        let currentLanguage = localStorage.getItem('language') || DEFAULT_LANGUAGE;
+
+        // 렌더링 함수들
+        function renderHeader() {
+            const headerName = document.querySelector('header .text-xl.font-bold');
+            if (headerName) headerName.textContent = SITE_CONTENT.personal.name;
+        }
+
+        function renderHero() {
+            const heroSection = document.querySelector('#hero');
+            const heroName = heroSection.querySelector('h1');
+            const paragraphs = heroSection.querySelectorAll('p');
+
+            if (heroName) heroName.textContent = SITE_CONTENT.personal.name;
+            if (paragraphs[0]) paragraphs[0].textContent = SITE_CONTENT.personal.role[currentLanguage];
+            if (paragraphs[1]) paragraphs[1].textContent = SITE_CONTENT.personal.tagline[currentLanguage];
+        }
+
+        function renderAbout() {
+            const aboutSection = document.querySelector('#about');
+            const paragraphs = aboutSection.querySelectorAll('p.text-lg.text-slate-700');
+            const tagElements = aboutSection.querySelectorAll('.flex.flex-wrap span');
+
+            // 바이오 텍스트 업데이트
+            SITE_CONTENT.about.bio.forEach((bio, index) => {
+                if (paragraphs[index]) {
+                    paragraphs[index].textContent = bio[currentLanguage];
+                }
+            });
+
+            // 태그 업데이트
+            SITE_CONTENT.about.tags.forEach((tag, index) => {
+                if (tagElements[index]) {
+                    tagElements[index].textContent = tag[currentLanguage];
+                }
+            });
+        }
+
+        function renderSkills() {
+            const skillsContainer = document.querySelector('#skills .grid');
+            skillsContainer.innerHTML = SITE_CONTENT.skills.map(skill => `
+                <div class="card-hover bg-white p-8 rounded-lg border border-slate-200 fade-in-up">
+                    <div class="text-4xl mb-4">${skill.icon}</div>
+                    <h3 class="text-2xl font-bold mb-4 text-slate-900">${skill.title[currentLanguage]}</h3>
+                    <p class="text-slate-700 leading-relaxed">${skill.description[currentLanguage]}</p>
+                </div>
+            `).join('');
+
+            // 재애니메이션 설정
+            setupFadeInAnimations();
+        }
+
+        function getColorClasses(color) {
+            const colorMap = {
+                teal: { bg: 'bg-teal-100', text: 'text-teal-800' },
+                green: { bg: 'bg-green-100', text: 'text-green-800' },
+                purple: { bg: 'bg-purple-100', text: 'text-purple-800' },
+                cyan: { bg: 'bg-cyan-100', text: 'text-cyan-800' },
+                blue: { bg: 'bg-blue-100', text: 'text-blue-800' }
+            };
+            return colorMap[color] || colorMap.blue;
+        }
+
+        function renderProjects() {
+            const projectsContainer = document.querySelector('#projects .grid');
+            projectsContainer.innerHTML = SITE_CONTENT.projects.map(project => {
+                const colorClasses = getColorClasses(project.statusColor);
+                return `
+                    <div class="card-hover bg-white p-8 rounded-lg border border-slate-200 fade-in-up">
+                        <div class="mb-4">
+                            <span class="inline-block px-3 py-1 ${colorClasses.bg} ${colorClasses.text} rounded-full text-xs font-semibold">${project.status[currentLanguage]}</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-slate-900">${project.title[currentLanguage]}</h3>
+                        <p class="text-slate-700 mb-4 text-sm">${project.description[currentLanguage]}</p>
+                        <div class="flex flex-wrap gap-2">
+                            ${project.tags.map(tag => {
+                                const tagText = typeof tag === 'string' ? tag : tag[currentLanguage];
+                                return `<span class="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded">${tagText}</span>`;
+                            }).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            setupFadeInAnimations();
+        }
+
+        function renderBlog() {
+            const blogContainer = document.querySelector('#blog .grid');
+            blogContainer.innerHTML = SITE_CONTENT.blog.map(post => {
+                const colorClasses = getColorClasses(post.categoryColor);
+                return `
+                    <div class="card-hover bg-white p-8 rounded-lg border border-slate-200 fade-in-up">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs text-slate-500">${post.date[currentLanguage]}</span>
+                            <span class="text-xs ${colorClasses.bg} ${colorClasses.text} px-2 py-1 rounded-full">${post.category[currentLanguage]}</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-slate-900">${post.title[currentLanguage]}</h3>
+                        <p class="text-slate-700 mb-4 text-sm leading-relaxed">${post.summary[currentLanguage]}</p>
+                        <a href="${post.link}" class="text-link text-sm font-semibold">${currentLanguage === 'ko' ? '더 읽기 →' : 'Read more →'}</a>
+                    </div>
+                `;
+            }).join('');
+
+            setupFadeInAnimations();
+        }
+
+        function renderContact() {
+            const contactSubtitle = document.querySelector('#contact > div > p');
+            const contactLabels = document.querySelectorAll('#contactForm label');
+            const contactButton = document.querySelector('#contactForm button[type="submit"]');
+            const contactText = document.querySelector('#contact .border-t + div > p');
+            const copyButton = document.getElementById('copyEmail');
+
+            if (contactSubtitle) contactSubtitle.textContent = SITE_CONTENT.contact.subtitle[currentLanguage];
+
+            if (contactLabels[0]) contactLabels[0].textContent = currentLanguage === 'ko' ? '이름' : 'Name';
+            if (contactLabels[1]) contactLabels[1].textContent = currentLanguage === 'ko' ? '이메일' : 'Email';
+            if (contactLabels[2]) contactLabels[2].textContent = currentLanguage === 'ko' ? '메시지' : 'Message';
+
+            if (contactButton) contactButton.textContent = currentLanguage === 'ko' ? '메시지 보내기' : 'Send Message';
+            if (contactText) contactText.textContent = currentLanguage === 'ko' ? '또는 직접 이메일로 연락주세요:' : 'Or email me directly:';
+
+            if (copyButton) {
+                copyButton.innerHTML = `<span>${SITE_CONTENT.personal.email}</span><span class="text-sm">${currentLanguage === 'ko' ? '복사' : 'Copy'}</span>`;
+            }
+        }
+
+        function renderFooter() {
+            const footer = document.querySelector('footer p');
+            if (footer) footer.textContent = SITE_CONTENT.footer.copyright[currentLanguage];
+        }
+
+        function renderAllSections() {
+            renderHeader();
+            renderHero();
+            renderAbout();
+            renderSkills();
+            renderProjects();
+            renderBlog();
+            renderContact();
+            renderFooter();
+            updateSectionTitles();
+        }
+
+        function updateSectionTitles() {
+            const titles = {
+                about: currentLanguage === 'ko' ? '소개' : 'About',
+                skills: currentLanguage === 'ko' ? '전문 분야' : 'Skills',
+                projects: currentLanguage === 'ko' ? '프로젝트' : 'Projects',
+                blog: currentLanguage === 'ko' ? '블로그' : 'Blog',
+                contact: currentLanguage === 'ko' ? '연락하기' : 'Contact'
+            };
+
+            Object.entries(titles).forEach(([sectionId, title]) => {
+                const h2 = document.querySelector(`#${sectionId} h2`);
+                if (h2) h2.textContent = title;
+            });
+        }
+
+        function setupFadeInAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+        }
+
+        // 언어 전환 함수
+        function setLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('language', lang);
+
+            // 언어 스위처 UI 업데이트
+            const langIcon = document.getElementById('langIcon');
+            const langText = document.getElementById('langText');
+
+            if (lang === 'ko') {
+                langIcon.textContent = '🇰🇷';
+                langText.textContent = 'KR';
+            } else {
+                langIcon.textContent = '🇺🇸';
+                langText.textContent = 'EN';
+            }
+
+            // 모든 섹션 재렌더링
+            renderAllSections();
+
+            // 문서 언어 속성 업데이트
+            document.documentElement.lang = lang;
+        }
+
+        // CTA 버튼 업데이트
+        function updateCtaButtons() {
+            const buttons = document.querySelectorAll('.cta-button');
+            if (buttons[0]) buttons[0].textContent = currentLanguage === 'ko' ? '프로젝트 보기' : 'View Projects';
+            if (buttons[1]) buttons[1].textContent = currentLanguage === 'ko' ? '연락하기' : 'Get In Touch';
+        }
+
+        // 네비게이션 링크 텍스트 업데이트
+        function updateNavigation() {
+            const navLabels = {
+                about: currentLanguage === 'ko' ? '소개' : 'About',
+                skills: currentLanguage === 'ko' ? '전문 분야' : 'Skills',
+                projects: currentLanguage === 'ko' ? '프로젝트' : 'Projects',
+                blog: currentLanguage === 'ko' ? '블로그' : 'Blog',
+                contact: currentLanguage === 'ko' ? '연락하기' : 'Contact'
+            };
+
+            document.querySelectorAll('nav a').forEach(link => {
+                const href = link.getAttribute('href');
+                const sectionId = href?.substring(1);
+                if (navLabels[sectionId]) {
+                    link.textContent = navLabels[sectionId];
+                }
+            });
+        }
+
+        // 섹션 제목 업데이트 (renderAllSections에 포함)
+        document.getElementById('langSwitch').addEventListener('click', () => {
+            setLanguage(currentLanguage === 'ko' ? 'en' : 'ko');
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuIcon = document.getElementById('menuIcon');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            menuIcon.style.transform = mobileMenu.classList.contains('active')
+                ? 'rotate(90deg)'
+                : 'rotate(0)';
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                menuIcon.style.transform = 'rotate(0)';
+            });
+        });
+
+        // Smooth scroll and active link highlighting
+        const navLinks = document.querySelectorAll('nav a');
+        const sections = document.querySelectorAll('section');
+        let headerScrolled = false;
+
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const scrollTop = window.scrollY;
+
+            if (scrollTop > 50 && !headerScrolled) {
+                header.classList.add('scrolled');
+                headerScrolled = true;
+            } else if (scrollTop <= 50 && headerScrolled) {
+                header.classList.remove('scrolled');
+                headerScrolled = false;
+            }
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+
+                if (scrollTop >= sectionTop - 100 && scrollTop < sectionTop + sectionHeight - 100) {
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    const activeLink = document.querySelector(`nav a[href="#${section.id}"]`);
+                    if (activeLink) activeLink.classList.add('active');
+                }
+            });
+        });
+
+        // Contact form handling
+        const contactForm = document.getElementById('contactForm');
+        const formMessage = document.getElementById('formMessage');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showFormMessage(currentLanguage === 'ko' ? '올바른 이메일을 입력해주세요.' : 'Please enter a valid email.', 'error');
+                return;
+            }
+
+            if (!name || !email || !message) {
+                showFormMessage(currentLanguage === 'ko' ? '모든 필드를 입력해주세요.' : 'Please fill in all fields.', 'error');
+                return;
+            }
+
+            showFormMessage(currentLanguage === 'ko' ? '메시지가 전송되었습니다! 감사합니다.' : 'Message sent! Thank you.', 'success');
+            contactForm.reset();
+
+            setTimeout(() => {
+                formMessage.classList.add('hidden');
+            }, 5000);
+        });
+
+        function showFormMessage(message, type) {
+            formMessage.textContent = message;
+            formMessage.className = 'p-4 rounded-lg text-sm font-medium';
+
+            if (type === 'success') {
+                formMessage.classList.add('bg-green-100', 'text-green-800');
+            } else {
+                formMessage.classList.add('bg-red-100', 'text-red-800');
+            }
+
+            formMessage.classList.remove('hidden');
+        }
+
+        // Copy email to clipboard
+        const copyEmailBtn = document.getElementById('copyEmail');
+        copyEmailBtn.addEventListener('click', async () => {
+            const email = SITE_CONTENT.personal.email;
+            try {
+                await navigator.clipboard.writeText(email);
+                const originalHtml = copyEmailBtn.innerHTML;
+                copyEmailBtn.innerHTML = '<span>✓ ' + (currentLanguage === 'ko' ? '복사됨' : 'Copied') + '</span>';
+                setTimeout(() => {
+                    copyEmailBtn.innerHTML = originalHtml;
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy:', err);
+            }
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderAllSections();
+            updateNavigation();
+            updateCtaButtons();
+            setupFadeInAnimations();
+        });
+    </script>
+</body>
+</html>
