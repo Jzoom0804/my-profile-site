@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- 문자 인코딩 설정 - 한글이 제대로 표시되도록 -->
+    <meta charset="UTF-8">
+
+    <!-- 모바일 반응형 설정 - 화면 크기에 맞춰 조정 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 페이지 제목 -->
+    <title>카운터 앱</title>
+
+    <!-- Tailwind CSS 라이브러리 - 스타일을 위한 CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- 화면 중앙에 배치하는 컨테이너 -->
+    <div class="flex items-center justify-center min-h-screen">
+        <!-- 카운터 앱 카드 -->
+        <div class="bg-white rounded-lg shadow-lg p-8 w-80">
+            <!-- 제목 -->
+            <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">
+                카운터 앱
+            </h1>
+
+            <!-- 카운트 표시 영역 -->
+            <!-- id="display"를 사용하여 JavaScript에서 이 요소를 찾아 업데이트 -->
+            <div class="bg-blue-50 rounded-lg p-8 mb-8">
+                <div class="text-6xl font-bold text-center text-blue-600" id="display">
+                    0
+                </div>
+                <p class="text-center text-gray-500 mt-2">현재 카운트</p>
+            </div>
+
+            <!-- 버튼 그룹 -->
+            <div class="flex gap-4">
+                <!-- 감소 버튼 (-1) -->
+                <button
+                    onclick="decrement()"
+                    class="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg transition duration-200"
+                >
+                    -
+                </button>
+
+                <!-- 리셋 버튼 (0으로 초기화) -->
+                <button
+                    onclick="reset()"
+                    class="flex-1 bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-4 rounded-lg transition duration-200"
+                >
+                    리셋
+                </button>
+
+                <!-- 증가 버튼 (+1) -->
+                <button
+                    onclick="increment()"
+                    class="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg transition duration-200"
+                >
+                    +
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript 로직 -->
+    <script>
+        // 1. 상태 관리: 현재 카운트값을 저장하는 변수
+        // 초기값은 0입니다
+        let count = 0;
+
+        // 2. 화면에 표시된 숫자를 업데이트하는 함수
+        // "display"라는 id를 가진 요소를 찾아 현재 count 값으로 변경합니다
+        function updateDisplay() {
+            document.getElementById('display').textContent = count;
+        }
+
+        // 3. 카운트를 1 증가시키는 함수
+        function increment() {
+            count = count + 1;  // count를 1 증가
+            updateDisplay();    // 화면 업데이트
+        }
+
+        // 4. 카운트를 1 감소시키는 함수
+        function decrement() {
+            count = count - 1;  // count를 1 감소
+            updateDisplay();    // 화면 업데이트
+        }
+
+        // 5. 카운트를 0으로 초기화하는 함수
+        function reset() {
+            count = 0;          // count를 0으로 설정
+            updateDisplay();    // 화면 업데이트
+        }
+    </script>
+</body>
+</html>
